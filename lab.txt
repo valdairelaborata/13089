@@ -1,0 +1,7 @@
+Crie uma página de boas-vindas com um título e uma breve descrição.
+
+Crie uma lista de itens estática.
+
+Crie uma página de perfil com informações fictícias sobre uma pessoa.
+
+
