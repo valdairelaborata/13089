@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -6,18 +6,34 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 function BemVindo(props) {
-  return <h1>Olá!! {props.nome}</h1>;
+  return (
+    <h1>
+      Olá!! {props.nome} - {props.sobreNome}
+    </h1>
+  );
 }
 
 function Descricao(props) {
   return <h2>Aqui vamos te apresentar uma descrição - {props.descricao}</h2>;
 }
 
+class MeuComponente extends Component {
+  render() {
+    return (
+      <BemVindo
+        nome={this.props.primeiroNome}
+        sobreNome={this.props.segundoNome}
+      ></BemVindo>
+    );
+  }
+}
+
 root.render(
   <React.StrictMode>
-    <BemVindo nome="Thiago"></BemVindo>
+    {/* <BemVindo nome="Thiago" sobreNome="Della"></BemVindo>
     <Descricao descricao="Detalhes da descrição"></Descricao>
-    <BemVindo nome="Alexandre"></BemVindo>
+    <BemVindo nome="Alexandre"></BemVindo> */}
+    <MeuComponente primeiroNome="Thiago" segundoNome="Della"></MeuComponente>
   </React.StrictMode>
 );
 
