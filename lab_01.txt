@@ -1,0 +1,4 @@
+Crie uma estrutura utilizando componentes para renderizar as informações de um cadastro simples com os dados abaixo.
+Dados básicos: nome, sobrenome e idade
+Endereço: dados de endereço para endereço residencial e comercial
+Dados profissionais: área de atuação das últimas 3 ocupações.
