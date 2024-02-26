@@ -1,0 +1,5 @@
+Crie um componente para os dados básicos (nome, sobrenome e idade) do laboratório 1.
+Considere o gerenciamento de estado para:
+Incluir
+Listar
+Excluir
