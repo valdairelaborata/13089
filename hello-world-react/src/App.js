@@ -4,7 +4,9 @@ import "./App.css";
 
 // import TextInput from "./components/TextInput/TextInput";
 
-import Form from "./components/form/form";
+// import Form from "./components/form/form";
+
+import ListaItens from "./components/ListaItens/ListaItens";
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
       {/* <Button></Button>
       <TextInput></TextInput> */}
 
-      <Form></Form>
+      <ListaItens></ListaItens>
     </>
   );
 }
