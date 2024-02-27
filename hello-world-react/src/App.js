@@ -7,15 +7,15 @@ import "./App.css";
 // import Form from "./components/form/form";
 
 import ListaItens from "./components/ListaItens/ListaItens";
+import Endereco from "./components/Endereco/Endereco";
 
 function App() {
   return (
-    <>
-      {/* <Button></Button>
-      <TextInput></TextInput> */}
-
+    <div className="testecss">
       <ListaItens></ListaItens>
-    </>
+      <span></span>
+      <Endereco></Endereco>
+    </div>
   );
 }
 

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+import Button from "../Button/Button";
+
+import "./ListaItens.css";
+
 function ListaItens() {
   const [itens, setItens] = useState([]);
   const [novoItem, setNovoItem] = useState({
@@ -24,13 +28,14 @@ function ListaItens() {
   };
 
   return (
-    <div>
+    <div className="lista-container">
       <h2>Lista de itens</h2>
       <input
         type="text"
         value={novoItem.nome}
         onChange={(e) => setNovoItem({ ...novoItem, nome: e.target.value })}
         placeholder="digite o nome..."
+        className="input-item"
       ></input>
       <input
         type="text"
@@ -39,6 +44,7 @@ function ListaItens() {
           setNovoItem({ ...novoItem, descricao: e.target.value })
         }
         placeholder="digite a descrição..."
+        className="input-item"
       ></input>
       <input
         type="number"
@@ -47,15 +53,17 @@ function ListaItens() {
           setNovoItem({ ...novoItem, quantidade: e.target.value })
         }
         placeholder="digite a quantidade..."
+        className="input-item"
       ></input>
 
       <div>
-        <button onClick={adicionarItem}>Adicionar item</button>
+        {/* <button onClick={adicionarItem}>Adicionar item</button> */}
+        <Button texto="Adicionar item"></Button>
       </div>
 
       <ol>
         {itens.map((item, index) => (
-          <li key={index}>
+          <li key={index} className="lista-item">
             <div>
               <p>
                 <strong>Nome:</strong> {item.nome}
@@ -67,7 +75,9 @@ function ListaItens() {
                 <strong>Quantidade:</strong> {item.quantidade}
               </p>
               <p>
-                <button onClick={() => removerItem(index)}>Remover item</button>
+                {/* <button onClick={() => removerItem(index)}>Remover item</button> */}
+
+                <Button></Button>
               </p>
             </div>
           </li>
