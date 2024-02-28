@@ -7,7 +7,6 @@ function Produtos() {
     nome: "",
     descricao: "",
   });
-
   const [edicaoProduto, setEdicaoProduto] = useState(null);
 
   useEffect(() => {
@@ -28,6 +27,26 @@ function Produtos() {
     setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
   };
 
+  const atualizarProduto = () => {
+    setProdutos(
+      produtos.map((produto) =>
+        produto.id === novoProduto.id ? novoProduto : produto
+      )
+    );
+    setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
+    setEdicaoProduto(null);
+  };
+
+  const excluirproduto = (id) => {
+    let produtosTemp = produtos.filter((p) => p.id !== id);
+    setProdutos(produtosTemp);
+  };
+
+  const editarproduto = (produto) => {
+    setEdicaoProduto(produto);
+    setNovoProduto(produto);
+  };
+
   return (
     <div>
       <h1>Lista de Produtos</h1>
@@ -35,6 +54,8 @@ function Produtos() {
         {produtos.map((produto) => (
           <li key={produto.id}>
             {produto.nome} - {produto.descricao}
+            <button onClick={() => excluirproduto(produto.id)}>Excluir</button>
+            <button onClick={() => editarproduto(produto)}>Editar</button>
           </li>
         ))}
       </ul>
@@ -56,7 +77,7 @@ function Produtos() {
         }
       />
       {edicaoProduto ? (
-        <button>Atualizar Produto</button>
+        <button onClick={atualizarProduto}>Atualizar Produto</button>
       ) : (
         <button onClick={adicionarProduto}>Adicionar Produto</button>
       )}
