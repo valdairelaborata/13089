@@ -6,15 +6,12 @@ import "./App.css";
 
 // import Form from "./components/form/form";
 
-import ListaItens from "./components/ListaItens/ListaItens";
-import Endereco from "./components/Endereco/Endereco";
+import Produtos from "./components/produtos/produtos";
 
 function App() {
   return (
-    <div className="testecss">
-      <ListaItens></ListaItens>
-      <span></span>
-      <Endereco></Endereco>
+    <div>
+      <Produtos></Produtos>
     </div>
   );
 }
