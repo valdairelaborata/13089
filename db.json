@@ -1,0 +1,14 @@
+{
+  "itens": [
+    {
+      "id": "1",
+      "nome": "Teclado",
+      "descricao": "aaaaaaaaaa"
+    },
+    {
+      "id": "2",
+      "nome": "Mouse",
+      "descricao": "asdasdda"
+    }
+  ]
+}

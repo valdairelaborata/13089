@@ -1,116 +1,94 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-class Produtos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      produtos: [],
-      novoProduto: { id: 1, nome: "", descricao: "" },
-      edicaoProduto: null,
-    };
-  }
+import axios from "axios";
 
-  componentDidMount() {
-    const produtosSalvos = JSON.parse(localStorage.getItem("produtos"));
-    if (produtosSalvos) {
-      this.setState({ produtos: produtosSalvos });
-    }
-  }
+function Produtos() {
+  const [produtos, setProdutos] = useState([]);
+  const [novoProduto, setNovoProduto] = useState({
+    id: 1,
+    nome: "",
+    descricao: "",
+  });
+  const [edicaoProduto, setEdicaoProduto] = useState(null);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.produtos !== this.state.produtos) {
-      localStorage.setItem("produtos", JSON.stringify(this.state.produtos));
-    }
-  }
+  useEffect(() => {
+    listar();
+  }, []);
 
-  adicionarProduto = () => {
-    this.setState((prevState) => ({
-      produtos: [...prevState.produtos, prevState.novoProduto],
-      novoProduto: {
-        id: prevState.novoProduto.id + 1,
-        nome: "",
-        descricao: "",
-      },
-    }));
+  const listar = async () => {
+    const response = await axios.get("http://localhost:3001/itens");
+    setProdutos(response.data);
   };
 
-  excluirProduto = (id) => {
-    this.setState((prevState) => ({
-      produtos: prevState.produtos.filter((produto) => produto.id !== id),
-    }));
+  useEffect(() => {}, [produtos]);
+
+  const adicionarProduto = () => {
+    axios.post("http://localhost:3001/itens", novoProduto);
+
+    //setProdutos([...produtos, novoProduto]);
+
+    // setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
   };
 
-  editarProduto = (produto) => {
-    this.setState({
-      edicaoProduto: produto,
-      novoProduto: produto,
-    });
+  const atualizarProduto = () => {
+    // setProdutos(
+    //   produtos.map((produto) =>
+    //     produto.id === novoProduto.id ? novoProduto : produto
+    //   )
+    // );
+    // setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
+    // setEdicaoProduto(null);
+
+    console.log(novoProduto);
+    axios.put("http://localhost:3001/itens/1", novoProduto);
   };
 
-  atualizarProduto = () => {
-    this.setState((prevState) => ({
-      produtos: prevState.produtos.map((produto) =>
-        produto.id === prevState.novoProduto.id
-          ? prevState.novoProduto
-          : produto
-      ),
-      novoProduto: {
-        id: prevState.novoProduto.id + 1,
-        nome: "",
-        descricao: "",
-      },
-      edicaoProduto: null,
-    }));
+  const excluirproduto = (id) => {
+    let produtosTemp = produtos.filter((p) => p.id !== id);
+    setProdutos(produtosTemp);
   };
 
-  render() {
-    const { produtos, novoProduto, edicaoProduto } = this.state;
+  const editarproduto = (produto) => {
+    setEdicaoProduto(produto);
+    setNovoProduto(produto);
+  };
 
-    return (
-      <div>
-        <h1>Lista de Produtos</h1>
-        <ul>
-          {produtos.map((produto) => (
-            <li key={produto.id}>
-              {produto.nome} - {produto.descricao}
-              <button onClick={() => this.excluirProduto(produto.id)}>
-                Excluir
-              </button>
-              <button onClick={() => this.editarProduto(produto)}>
-                Editar
-              </button>
-            </li>
-          ))}
-        </ul>
-        <h2>{edicaoProduto ? "Editar Produto" : "Novo Produto"}</h2>
-        <input
-          type="text"
-          placeholder="Nome"
-          value={novoProduto.nome}
-          onChange={(e) =>
-            this.setState({
-              novoProduto: { ...novoProduto, nome: e.target.value },
-            })
-          }
-        />
-        <input
-          type="text"
-          placeholder="Descrição"
-          value={novoProduto.descricao}
-          onChange={(e) =>
-            this.setState({
-              novoProduto: { ...novoProduto, descricao: e.target.value },
-            })
-          }
-        />
-        {edicaoProduto ? (
-          <button onClick={this.atualizarProduto}>Atualizar Produto</button>
-        ) : (
-          <button onClick={this.adicionarProduto}>Adicionar Produto</button>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Lista de Produtos</h1>
+      <ul>
+        {produtos.map((produto) => (
+          <li key={produto.id}>
+            {produto.nome} - {produto.descricao}
+            <button onClick={() => excluirproduto(produto.id)}>Excluir</button>
+            <button onClick={() => editarproduto(produto)}>Editar</button>
+          </li>
+        ))}
+      </ul>
+
+      <input
+        type="text"
+        placeholder="Nome"
+        value={novoProduto.nome}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, nome: e.target.value })
+        }
+      />
+      <input
+        type="text"
+        placeholder="Descrição"
+        value={novoProduto.descricao}
+        onChange={(e) =>
+          setNovoProduto({ ...novoProduto, descricao: e.target.value })
+        }
+      />
+      {edicaoProduto ? (
+        <button onClick={atualizarProduto}>Atualizar Produto</button>
+      ) : (
+        <button onClick={adicionarProduto}>Adicionar Produto</button>
+      )}
+    </div>
+  );
 }
 
 export default Produtos;
