@@ -1,0 +1,7 @@
+Crie um componente funcional com que permita ao usuário cadastrar endereços. 
+
+O componente deve exibir campos para rua, cidade, estado e CEP, e um botão para adicionar o endereço à lista. 
+
+Os endereços cadastrados devem ser exibidos em uma lista abaixo do formulário.
+
+Utilize o json-server + axios para listar, incluir e editar
