@@ -5,11 +5,11 @@ import axios from "axios";
 function Produtos() {
   const [produtos, setProdutos] = useState([]);
   const [novoProduto, setNovoProduto] = useState({
-    id: 1,
     nome: "",
     descricao: "",
   });
   const [edicaoProduto, setEdicaoProduto] = useState(null);
+  const [recarregar, SetRecarregar] = useState(false);
 
   useEffect(() => {
     listar();
@@ -20,32 +20,27 @@ function Produtos() {
     setProdutos(response.data);
   };
 
-  useEffect(() => {}, [produtos]);
+  useEffect(() => {
+    if (recarregar) listar();
+  }, [recarregar]);
 
   const adicionarProduto = () => {
     axios.post("http://localhost:3001/itens", novoProduto);
-
-    //setProdutos([...produtos, novoProduto]);
-
-    // setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
+    SetRecarregar(true);
+    setNovoProduto({ nome: "", descricao: "" });
   };
 
   const atualizarProduto = () => {
-    // setProdutos(
-    //   produtos.map((produto) =>
-    //     produto.id === novoProduto.id ? novoProduto : produto
-    //   )
-    // );
-    // setNovoProduto({ id: novoProduto.id + 1, nome: "", descricao: "" });
-    // setEdicaoProduto(null);
+    setNovoProduto({ nome: "", descricao: "" });
+    setEdicaoProduto(null);
+    axios.put(`http://localhost:3001/itens/${novoProduto.id}`, novoProduto);
 
-    console.log(novoProduto);
-    axios.put("http://localhost:3001/itens/1", novoProduto);
+    listar();
   };
 
   const excluirproduto = (id) => {
-    let produtosTemp = produtos.filter((p) => p.id !== id);
-    setProdutos(produtosTemp);
+    axios.delete(`http://localhost:3001/itens/${id}`);
+    listar();
   };
 
   const editarproduto = (produto) => {
