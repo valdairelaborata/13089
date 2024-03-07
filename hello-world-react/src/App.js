@@ -6,12 +6,12 @@ import "./App.css";
 
 // import Form from "./components/form/form";
 
-import Produtos from "./components/produtos/produtos";
+import Lista from "./components/lista/lista";
 
 function App() {
   return (
     <div>
-      <Produtos></Produtos>
+      <Lista></Lista>
     </div>
   );
 }
