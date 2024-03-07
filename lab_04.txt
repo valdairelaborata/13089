@@ -4,4 +4,4 @@ O componente deve exibir campos para rua, cidade, estado e CEP, e um botão para
 
 Os endereços cadastrados devem ser exibidos em uma lista abaixo do formulário.
 
-Utilize o json-server + axios para listar, incluir e editar
+Utilize o json-server + axios para o CRUD do endereço.
