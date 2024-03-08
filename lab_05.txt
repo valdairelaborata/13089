@@ -8,7 +8,7 @@ Utilize o json-server + axios para o CRUD do endereço.
 
 Os campos de imput devem estar em um componente separado da lista
 
-Para cada registro da lista u usuário pode escolher editar, excluir ou visualizar os detalhes
+Para cada registro da lista o usuário pode escolher editar, excluir ou visualizar os detalhes
 
 Caso escolha editar deve habilitar os campos de imput para o usuário alterar e salvar
 

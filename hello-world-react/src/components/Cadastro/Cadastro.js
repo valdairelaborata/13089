@@ -34,10 +34,21 @@ function Cadastro({ exibeCadastro, edicaoProduto, listar }) {
   }, [edicaoProduto]);
 
   const salvar = () => {
-    if (edicaoProduto.id) {
-      axios.put(`http://localhost:3001/itens/${edicaoProduto.id}`, novoProduto);
-    } else {
-      axios.post("http://localhost:3001/itens", novoProduto);
+    try {
+      if (edicaoProduto.id) {
+        axios.put(
+          `http://localhost:3001/itensxpto/${edicaoProduto.id}`,
+          novoProduto
+        );
+      } else {
+        axios.post("http://localhost:3001/itens", novoProduto);
+      }
+    } catch (error) {
+      try {
+        axios.post("http://localhost:3001/logs/CAD_001", error);
+      } catch (error) {}
+
+      console.log("Ocorreu um erro ao salvar (CAD_001)!!");
     }
 
     listar();
