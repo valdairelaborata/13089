@@ -8,6 +8,26 @@ function Cadastro({ exibeCadastro, edicaoProduto, listar }) {
     descricao: "",
   });
 
+  const [showNotification, setShowNotification] = useState(false);
+
+  const Notification = ({ mensagem }) => {
+    return (
+      <div
+        style={{ background: "lightblue", padding: "10px", margin: "10px 0" }}
+      >
+        {mensagem}
+      </div>
+    );
+  };
+
+  const Exibir = () => {
+    setShowNotification(true);
+
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
   useEffect(() => {
     console.log("Cadastro");
     setNovoProduto(edicaoProduto);
@@ -21,11 +41,16 @@ function Cadastro({ exibeCadastro, edicaoProduto, listar }) {
     }
 
     listar();
+
+    Exibir();
   };
 
   return (
     exibeCadastro && (
       <div>
+        {showNotification && (
+          <Notification mensagem="Registro atualizado!!!"></Notification>
+        )}
         <input
           type="text"
           placeholder="Nome"

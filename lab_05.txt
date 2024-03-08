@@ -1,0 +1,19 @@
+Crie um componente funcional com que permita ao usuário cadastrar endereços. 
+
+O componente deve exibir campos para rua, cidade, estado e CEP, e um botão para adicionar o endereço à lista. 
+
+Os endereços cadastrados devem ser exibidos em uma lista abaixo do formulário.
+
+Utilize o json-server + axios para o CRUD do endereço.
+
+Os campos de imput devem estar em um componente separado da lista
+
+Para cada registro da lista u usuário pode escolher editar, excluir ou visualizar os detalhes
+
+Caso escolha editar deve habilitar os campos de imput para o usuário alterar e salvar
+
+Caso escolha excluir deve perguntar ao usuário a confirmação e na confirmação informar os dados do registro 
+
+Caso escolha visualizar os detalhes o sistema deve abrir uma modal com os dados do registro 
+
+Para cada ação final, por exemplo, salvar, excluir deve exibir mensagem de confirmação ou erro
