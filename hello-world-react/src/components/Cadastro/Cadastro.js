@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
-function Cadastro({ exibeCadastro, edicaoProduto }) {
+function Cadastro({ exibeCadastro, edicaoProduto, listar }) {
   const [novoProduto, setNovoProduto] = useState({
     nome: "",
     descricao: "",
   });
+
+  useEffect(() => {
+    console.log("Cadastro");
+    setNovoProduto(edicaoProduto);
+  }, [edicaoProduto]);
 
   const salvar = () => {
     if (edicaoProduto.id) {
@@ -14,6 +19,8 @@ function Cadastro({ exibeCadastro, edicaoProduto }) {
     } else {
       axios.post("http://localhost:3001/itens", novoProduto);
     }
+
+    listar();
   };
 
   return (
@@ -22,7 +29,7 @@ function Cadastro({ exibeCadastro, edicaoProduto }) {
         <input
           type="text"
           placeholder="Nome"
-          value={edicaoProduto.nome}
+          value={novoProduto.nome}
           onChange={(e) =>
             setNovoProduto({ ...novoProduto, nome: e.target.value })
           }
@@ -30,7 +37,7 @@ function Cadastro({ exibeCadastro, edicaoProduto }) {
         <input
           type="text"
           placeholder="Descrição"
-          value={edicaoProduto.descricao}
+          value={novoProduto.descricao}
           onChange={(e) =>
             setNovoProduto({ ...novoProduto, descricao: e.target.value })
           }

@@ -22,6 +22,10 @@ function Lista() {
   };
 
   const adicionarProduto = () => {
+    setEdicaoProduto({
+      nome: "",
+      descricao: "",
+    });
     setExibeCadastro(true);
   };
 
@@ -40,6 +44,7 @@ function Lista() {
       <Cadastro
         exibeCadastro={exibeCadastro}
         edicaoProduto={edicaoProduto}
+        listar={listar}
       ></Cadastro>
 
       <ul>
