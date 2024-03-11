@@ -1,17 +1,23 @@
 import "./App.css";
 
-// import Button from "./components/Button/Button";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-// import TextInput from "./components/TextInput/TextInput";
-
-// import Form from "./components/form/form";
-
-import Lista from "./components/lista/lista";
+import Header from "./components/header/header";
+import GestaoProdutos from "./components/gestaoProdutos/gestaoProdutos";
+import CadastroProduto from "./components/cadastroProduto/cadastroProduto";
 
 function App() {
   return (
     <div>
-      <Lista></Lista>
+      <Router>
+        <Header></Header>
+        <div className="container">
+          <Switch>
+            <Route path="/" exact component={GestaoProdutos}></Route>
+            <Route path="/add-product/" component={CadastroProduto}></Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }
