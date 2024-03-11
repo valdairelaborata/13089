@@ -1,0 +1,5 @@
+
+
+- Aplique uma estrutura de navegação utilizando o ["react-router-dom": "^5.2.0"] para o crud feito no lab 5.
+
+- Estilize com o bootstrap ["bootstrap": "^4.5.0"] a tela inicial de menu + a lista + criação
