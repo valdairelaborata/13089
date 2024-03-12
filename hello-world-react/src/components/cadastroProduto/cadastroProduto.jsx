@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function CadastroProduto() {
@@ -14,20 +14,23 @@ function CadastroProduto() {
 
   // const history = useHistory();
 
-  // useEffect(() => {
-  // aler
-  // }, novoProduto);
+  useEffect(() => {
+    if (id !== undefined) buscar(id);
+  }, [id]);
 
-  // const buscar = async () => {
-  //   alert(id);
-  //   // const response = await axios.get("http://localhost:3001/itens");
-  //   // setProdutos(response.data);
-  // };
+  const buscar = async (id) => {
+    const response = await axios.get(`http://localhost:3001/itens/${id}`);
+    setNovoProduto(response.data);
+  };
 
   const salvar = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/itens", novoProduto);
 
+    if (novoProduto.id === undefined) {
+      axios.post("http://localhost:3001/itens", novoProduto);
+    } else {
+      axios.put(`http://localhost:3001/itens/${novoProduto.id}`, novoProduto);
+    }
     setShowNotification(true);
 
     // history.push("/");
@@ -90,8 +93,6 @@ function CadastroProduto() {
             </button>
           </form>
         </div>
-
-        <p>{id}</p>
       </div>
     </>
   );

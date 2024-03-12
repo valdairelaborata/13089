@@ -14,7 +14,7 @@ function App() {
         <div className="container">
           <Switch>
             <Route path="/" exact component={GestaoProdutos}></Route>
-            <Route path="/add-product/" component={CadastroProduto}></Route>
+            <Route path="/add-product/add" component={CadastroProduto}></Route>
             <Route path="/add-product/:id" component={CadastroProduto}></Route>
           </Switch>
         </div>

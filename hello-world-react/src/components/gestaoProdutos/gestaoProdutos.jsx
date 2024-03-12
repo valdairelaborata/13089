@@ -9,7 +9,7 @@ function GestaoProdutos() {
   const [produtos, setProdutos] = useState([]);
 
   const addProduct = () => {
-    history.push("/add-product/");
+    history.push(`/add-product/add`);
   };
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function GestaoProdutos() {
   };
 
   const editar = (id) => {
-    history.push(`/add-product/11111`);
+    history.push(`/add-product/${id}`);
   };
 
   return (
