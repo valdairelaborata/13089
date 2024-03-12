@@ -1,34 +1,22 @@
 {
   "itens": [
     {
-      "nome": "",
-      "descricao": "",
-      "id": "4898"
+      "id": "f0a7",
+      "codigo": "xpto 0500",
+      "nome": "Mouse",
+      "descricao": "asdasdasdas"
     },
     {
-      "id": "a392",
-      "nome": "qwe",
-      "descricao": "eee3"
+      "id": "b805",
+      "codigo": "xpto 0600",
+      "nome": "asd",
+      "descricao": "asd"
     },
     {
-      "id": "c966",
-      "nome": "e",
-      "descricao": ""
-    },
-    {
-      "id": "5b56",
-      "nome": "123",
-      "descricao": "123123213asd"
-    },
-    {
-      "id": "eb55",
-      "nome": "Teste",
-      "descricao": "21312321asd"
-    },
-    {
-      "id": "8409",
-      "nome": "Teste01",
-      "descricao": "eqweqwe"
+      "id": "3755",
+      "codigo": "asd",
+      "nome": "asd",
+      "descricao": "asd"
     }
   ]
 }
