@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 
 function CadastroProduto() {
+  const { id } = useParams();
+
   const [novoProduto, setNovoProduto] = useState({
     codigo: "",
     nome: "",
@@ -10,14 +12,25 @@ function CadastroProduto() {
   });
   const [showNotification, setShowNotification] = useState(false);
 
-  const history = useHistory();
+  // const history = useHistory();
 
-  const salvar = () => {
+  // useEffect(() => {
+  // aler
+  // }, novoProduto);
+
+  // const buscar = async () => {
+  //   alert(id);
+  //   // const response = await axios.get("http://localhost:3001/itens");
+  //   // setProdutos(response.data);
+  // };
+
+  const salvar = (e) => {
+    e.preventDefault();
     axios.post("http://localhost:3001/itens", novoProduto);
 
     setShowNotification(true);
 
-    history.push("/");
+    // history.push("/");
   };
 
   const Notification = ({ mensagem }) => {
@@ -36,7 +49,7 @@ function CadastroProduto() {
         <h3 className="text-center">Novo produto</h3>
         <div className="card-body">
           {showNotification && (
-            <Notification mensagem="Registro atualizado!!!"></Notification>
+            <Notification mensagem="Registro salvo com sucesso!!!"></Notification>
           )}
           <form>
             <div className="form-group">
@@ -77,6 +90,8 @@ function CadastroProduto() {
             </button>
           </form>
         </div>
+
+        <p>{id}</p>
       </div>
     </>
   );

@@ -15,6 +15,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={GestaoProdutos}></Route>
             <Route path="/add-product/" component={CadastroProduto}></Route>
+            <Route path="/add-product/:id" component={CadastroProduto}></Route>
           </Switch>
         </div>
       </Router>
