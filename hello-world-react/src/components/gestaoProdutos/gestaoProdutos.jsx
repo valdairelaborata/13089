@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import axios from "axios";
 import { useHistory } from "react-router-dom";
+
+import ProdutoServico from "../../services/produtoServico";
 
 function GestaoProdutos() {
   const history = useHistory();
@@ -17,7 +18,7 @@ function GestaoProdutos() {
   }, []);
 
   const listar = async () => {
-    const response = await axios.get("http://localhost:3001/itens");
+    const response = await ProdutoServico.listar();
     setProdutos(response.data);
   };
 

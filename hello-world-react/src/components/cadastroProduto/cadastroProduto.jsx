@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
+import ProdutoServico from "../../services/produtoServico";
 
 function CadastroProduto() {
   const { id } = useParams();
@@ -19,21 +20,18 @@ function CadastroProduto() {
   }, [id]);
 
   const buscar = async (id) => {
-    const response = await axios.get(`http://localhost:3001/itens/${id}`);
-    setNovoProduto(response.data);
+    setNovoProduto((await ProdutoServico.buscarPeloId(id)).data);
   };
 
   const salvar = (e) => {
     e.preventDefault();
 
     if (novoProduto.id === undefined) {
-      axios.post("http://localhost:3001/itens", novoProduto);
+      ProdutoServico.incluir(novoProduto);
     } else {
-      axios.put(`http://localhost:3001/itens/${novoProduto.id}`, novoProduto);
+      ProdutoServico.alterar(novoProduto);
     }
     setShowNotification(true);
-
-    // history.push("/");
   };
 
   const Notification = ({ mensagem }) => {
