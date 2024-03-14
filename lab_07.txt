@@ -1,0 +1,8 @@
+
+
+- Crie uma tela de login [componente]
+- Validar o usuário [validando contra o back-end] [serviço de autenticação]
+- Caso usuário válido redirecionar para a lista de produtos
+
+
+- opcional [gravar o usuário que logou no cdastro de produto]
